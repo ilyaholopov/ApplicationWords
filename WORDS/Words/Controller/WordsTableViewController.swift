@@ -154,14 +154,18 @@ class WordsTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    /*
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let cell = tableView.cellForRow(at: indexPath) as! WordTableViewCell
+        cell.backgroundColor = .black
+        return indexPath
+    }
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! WordTableViewCell
-//        if cell.isSelected {
-//            return 50
-//        }
-//        return 10
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! WordTableViewCell
+        cell.backgroundColor = .red
+        print(cell.wordLabel.text!)
+    }*/
     
     func showActivityIndicator() {
         activityView = UIActivityIndicatorView(style: .large)
