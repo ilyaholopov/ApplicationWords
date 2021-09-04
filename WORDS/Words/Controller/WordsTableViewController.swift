@@ -154,6 +154,18 @@ class WordsTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let pin = UIContextualAction(style: .normal, title: nil) { _, _, completionHandler in
+            // совершаемое действие, добавление в закрепленное
+            completionHandler(true)
+        }
+        pin.image = UIImage(systemName: "pin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withRenderingMode(.alwaysOriginal)
+        pin.backgroundColor = .systemOrange
+        let configuration = UISwipeActionsConfiguration(actions: [pin])
+        configuration.performsFirstActionWithFullSwipe = true
+        return configuration
+    }
     /*
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let cell = tableView.cellForRow(at: indexPath) as! WordTableViewCell
