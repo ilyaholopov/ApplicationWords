@@ -94,6 +94,7 @@ class WordsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.rowHeight = 60
         
         // Настройка  search Controller
         searchController.searchResultsUpdater = self
