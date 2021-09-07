@@ -150,7 +150,6 @@ class LearnViewController: UIViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        
         wordForStudy()
         
     }

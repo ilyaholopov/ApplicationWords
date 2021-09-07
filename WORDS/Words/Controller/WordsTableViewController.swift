@@ -61,6 +61,7 @@ class WordsTableViewController: UITableViewController {
             wordObject.translate = answer.translation
         }
         wordObject.progress = 1
+        wordObject.pin = false
         
         do {
             try context.save()
@@ -75,6 +76,16 @@ class WordsTableViewController: UITableViewController {
         return appDelegate.persistentContainer.viewContext
     }
     
+    private func SaveContext() {
+        let context = getContext()
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +93,6 @@ class WordsTableViewController: UITableViewController {
         
         let context = getContext()
         let fetchRequest: NSFetchRequest<Word> = Word.fetchRequest()
-        
         do {
             words = try context.fetch(fetchRequest)
         } catch let error as NSError {
@@ -129,7 +139,6 @@ class WordsTableViewController: UITableViewController {
         }
         cell.wordLabel.text = word.title
         cell.translateLabel.text = word.translate
-
         cell.backgroundColor = ColorCell[Int(word.progress)-1]
         return cell
     }
@@ -139,7 +148,7 @@ class WordsTableViewController: UITableViewController {
         // удаление элемента из массива и CoreData
         if editingStyle == .delete {
             words.remove(at: indexPath.row)
-            
+            print(indexPath.row)
             let context = getContext()
             let fetchRequest: NSFetchRequest<Word> = Word.fetchRequest()
             if let objects = try? context.fetch(fetchRequest) {
@@ -158,27 +167,33 @@ class WordsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let pin = UIContextualAction(style: .normal, title: nil) { _, _, completionHandler in
-            // совершаемое действие, добавление в закрепленное
+            self.words[indexPath.row].pin = true
             completionHandler(true)
         }
         pin.image = UIImage(systemName: "pin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withRenderingMode(.alwaysOriginal)
         pin.backgroundColor = .systemOrange
-        let configuration = UISwipeActionsConfiguration(actions: [pin])
+        
+        let nopin = UIContextualAction(style: .normal, title: nil) { _, _, completionHandler in
+            self.words[indexPath.row].pin = false
+            completionHandler(true)
+        }
+        nopin.image = UIImage(systemName: "pin.slash", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withRenderingMode(.alwaysOriginal)
+        nopin.backgroundColor = .systemOrange
+        
+        let configuration: UISwipeActionsConfiguration
+        if  self.words[indexPath.row].pin == true {
+            configuration = UISwipeActionsConfiguration(actions: [nopin])
+        } else {
+            configuration = UISwipeActionsConfiguration(actions: [pin])
+        }
+        
+        SaveContext()
+        tableView.reloadData()
+        
         configuration.performsFirstActionWithFullSwipe = true
         return configuration
     }
-    /*
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        let cell = tableView.cellForRow(at: indexPath) as! WordTableViewCell
-        cell.backgroundColor = .black
-        return indexPath
-    }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! WordTableViewCell
-        cell.backgroundColor = .red
-        print(cell.wordLabel.text!)
-    }*/
     
     func showActivityIndicator() {
         activityView = UIActivityIndicatorView(style: .large)
