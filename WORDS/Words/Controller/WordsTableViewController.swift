@@ -78,12 +78,10 @@ class WordsTableViewController: UITableViewController {
     
     private func SaveContext() {
         let context = getContext()
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
     }
     
@@ -140,6 +138,12 @@ class WordsTableViewController: UITableViewController {
         cell.wordLabel.text = word.title
         cell.translateLabel.text = word.translate
         cell.backgroundColor = ColorCell[Int(word.progress)-1]
+        cell.imagePin.image = UIImage(systemName: "pin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withRenderingMode(.alwaysOriginal)
+        if word.pin == true {
+            cell.imagePin.isHidden = false
+        } else {
+            cell.imagePin.isHidden = true
+        }
         return cell
     }
 
@@ -165,31 +169,34 @@ class WordsTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let pin = UIContextualAction(style: .normal, title: nil) { _, _, completionHandler in
-            self.words[indexPath.row].pin = true
+    private func pin(rowIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! WordTableViewCell
+        let pin = UIContextualAction(style: .normal, title: nil) { _, _, completionHandler  in
+            if self.words[indexPath.row].pin == false {
+                self.words[indexPath.row].pin = true
+                cell.imagePin.isHidden = false
+            } else {
+                self.words[indexPath.row].pin = false
+                cell.imagePin.isHidden = true
+            }
+            self.SaveContext()
+            self.tableView.reloadData()
             completionHandler(true)
         }
-        pin.image = UIImage(systemName: "pin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withRenderingMode(.alwaysOriginal)
-        pin.backgroundColor = .systemOrange
-        
-        let nopin = UIContextualAction(style: .normal, title: nil) { _, _, completionHandler in
-            self.words[indexPath.row].pin = false
-            completionHandler(true)
-        }
-        nopin.image = UIImage(systemName: "pin.slash", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withRenderingMode(.alwaysOriginal)
-        nopin.backgroundColor = .systemOrange
-        
-        let configuration: UISwipeActionsConfiguration
-        if  self.words[indexPath.row].pin == true {
-            configuration = UISwipeActionsConfiguration(actions: [nopin])
+        var nameImage: String = ""
+        if words[indexPath.row].pin == false {
+            nameImage = "pin"
         } else {
-            configuration = UISwipeActionsConfiguration(actions: [pin])
+            nameImage = "pin.slash"
         }
-        
-        SaveContext()
-        tableView.reloadData()
-        
+        pin.image = UIImage(systemName: nameImage, withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withRenderingMode(.alwaysOriginal)
+        pin.backgroundColor = .orange
+        return pin
+    }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let pin = pin(rowIndexPath: indexPath)
+        let configuration = UISwipeActionsConfiguration(actions: [pin])
         configuration.performsFirstActionWithFullSwipe = true
         return configuration
     }

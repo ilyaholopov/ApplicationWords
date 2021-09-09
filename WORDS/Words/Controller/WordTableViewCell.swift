@@ -11,6 +11,7 @@ class WordTableViewCell: UITableViewCell {
 
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var translateLabel: UILabel!
+    @IBOutlet weak var imagePin: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
