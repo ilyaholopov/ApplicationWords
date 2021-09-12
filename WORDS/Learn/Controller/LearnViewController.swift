@@ -11,7 +11,7 @@ import CoreData
 class LearnViewController: UIViewController {
     
     var words2: [Word] = []
-    var index: Int = 0
+    var index = Array(repeating: false, count: 4)
     var indexWords: Int = 0
     var lastIndex: Int = -1
     
@@ -47,7 +47,7 @@ class LearnViewController: UIViewController {
     }
     
     private func selectAnswer(indexAnswer: Int) {
-        if index == indexAnswer {
+        if index[indexAnswer] == true {
             answers[indexAnswer].backgroundColor = UIColor.green
             if words2[indexWords].progress != 10 {
                 words2[indexWords].progress += 1
@@ -57,7 +57,11 @@ class LearnViewController: UIViewController {
             if words2[indexWords].progress > 1 {
                 words2[indexWords].progress -= 1
             }
-            answers[index].backgroundColor = .green
+            for item in 0...3 {
+                if index[item] == true {
+                    answers[item].backgroundColor = .green
+                }
+            }
         }
         enableAllButton(selector: false)
         nextButtonOutlet.backgroundColor = .green
@@ -70,7 +74,7 @@ class LearnViewController: UIViewController {
     }
     
     //выбирает рандомом из элементов с самым низким прогрессом
-    private func nextIndex() -> Int {
+    private func nextIndexWordForLearn() -> Int {
         var minProgress = 10
         var indices = [Int]()
         for item in 0..<words2.count {
@@ -88,8 +92,11 @@ class LearnViewController: UIViewController {
     }
     
     private func wordForStudy() {
-        index = Int.random(in: 0...3)
-        indexWords = nextIndex()
+        for item in 0...3 {
+            index[item] = false
+        }
+        index[Int.random(in: 0...3)] = true
+        indexWords = nextIndexWordForLearn()
         let mode = Int.random(in: 0...1)
         
         switch mode {
@@ -101,20 +108,27 @@ class LearnViewController: UIViewController {
             print("Error")
         }
         
-        
         for item in 0...3 {
             switch mode {
             case 0:
-                if item == index {
+                if index[item] == true {
                     answers[item].setTitle(words2[indexWords].translate, for: .normal)
                 } else {
-                    answers[item].setTitle(words2[Int.random(in: 0..<words2.count)].translate, for: .normal)
+                    let wordRandom = words2[Int.random(in: 0..<words2.count)]
+                    if wordRandom == words2[indexWords] {
+                        index[item] = true
+                    }
+                    answers[item].setTitle(wordRandom.translate, for: .normal)
                 }
             case 1:
-                if item == index {
+                if index[item] == true {
                     answers[item].setTitle(words2[indexWords].title, for: .normal)
                 } else {
-                    answers[item].setTitle(words2[Int.random(in: 0..<words2.count)].title, for: .normal)
+                    let wordRandom = words2[Int.random(in: 0..<words2.count)]
+                    if wordRandom == words2[indexWords] {
+                        index[item] = true
+                    }
+                    answers[item].setTitle(wordRandom.title, for: .normal)
                 }
             default:
                 print("Error")
