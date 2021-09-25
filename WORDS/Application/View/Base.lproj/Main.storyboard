@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qft-0s-H99">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qft-0s-H99">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -108,7 +109,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hHy-Kn-tKf"/>
-                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <color key="backgroundColor" red="0.22811279877028776" green="0.64832947973192445" blue="0.79138233901178667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="es1-9l-CxP" firstAttribute="centerX" secondItem="hHy-Kn-tKf" secondAttribute="centerX" id="2vn-fR-46k"/>
                             <constraint firstItem="es1-9l-CxP" firstAttribute="top" secondItem="aoF-26-Tem" secondAttribute="bottom" constant="76" id="Eph-qY-lua"/>
@@ -140,7 +141,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YFc-di-vC1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="6vp-0y-0iT" kind="relationship" relationship="viewControllers" id="Wb4-19-Feu"/>
@@ -161,16 +162,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="NNY-BW-ki4" customClass="WordTableViewCell" customModule="WORDS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NNY-BW-ki4" id="jGi-GF-7pD">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llb-Tu-Y20">
-                                            <rect key="frame" x="20" y="12" width="40" height="37"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="word" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llb-Tu-Y20">
+                                            <rect key="frame" x="20" y="12" width="159" height="37"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="9qb-mG-0YI"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="159" id="FGY-eR-vCd"/>
                                                 <constraint firstAttribute="height" constant="37" id="l1e-Kv-MSg"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -199,11 +200,11 @@
                                         <constraint firstItem="llb-Tu-Y20" firstAttribute="top" secondItem="jGi-GF-7pD" secondAttribute="top" constant="12" id="0Da-TG-yIb"/>
                                         <constraint firstAttribute="trailing" secondItem="JyQ-MV-mK8" secondAttribute="trailing" constant="8" id="5D5-2e-g0x"/>
                                         <constraint firstItem="JyQ-MV-mK8" firstAttribute="top" secondItem="jGi-GF-7pD" secondAttribute="top" constant="20" symbolic="YES" id="9YP-nK-pEz"/>
+                                        <constraint firstItem="1yX-9e-mfV" firstAttribute="leading" secondItem="llb-Tu-Y20" secondAttribute="trailing" constant="43" id="H0H-Lg-wzH"/>
                                         <constraint firstAttribute="bottom" secondItem="llb-Tu-Y20" secondAttribute="bottom" constant="11" id="ION-mc-BGd"/>
                                         <constraint firstItem="1yX-9e-mfV" firstAttribute="top" secondItem="jGi-GF-7pD" secondAttribute="top" constant="11" id="Ndp-7X-nB3"/>
                                         <constraint firstItem="llb-Tu-Y20" firstAttribute="leading" secondItem="jGi-GF-7pD" secondAttribute="leading" constant="20" symbolic="YES" id="Sdg-QO-apR"/>
                                         <constraint firstAttribute="bottom" secondItem="JyQ-MV-mK8" secondAttribute="bottom" constant="20" symbolic="YES" id="Zqz-Cg-kfP"/>
-                                        <constraint firstItem="1yX-9e-mfV" firstAttribute="leading" secondItem="llb-Tu-Y20" secondAttribute="trailing" priority="999" constant="162" id="cNy-5f-kfc"/>
                                         <constraint firstItem="JyQ-MV-mK8" firstAttribute="leading" secondItem="1yX-9e-mfV" secondAttribute="trailing" constant="3" id="nBF-Ae-X36"/>
                                         <constraint firstAttribute="bottom" secondItem="1yX-9e-mfV" secondAttribute="bottom" constant="11" id="xVP-2W-Dm1"/>
                                     </constraints>
@@ -253,13 +254,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="book.fill" catalog="system" width="128" height="102"/>
+        <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

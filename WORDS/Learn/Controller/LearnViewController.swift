@@ -48,7 +48,7 @@ class LearnViewController: UIViewController {
     
     private func selectAnswer(indexAnswer: Int) {
         if index[indexAnswer] == true {
-            answers[indexAnswer].backgroundColor = UIColor.green
+            answers[indexAnswer].backgroundColor = .systemGreen
             if words2[indexWords].progress != 10 {
                 words2[indexWords].progress += 1
             }
@@ -59,7 +59,7 @@ class LearnViewController: UIViewController {
             }
             for item in 0...3 {
                 if index[item] == true {
-                    answers[item].backgroundColor = .green
+                    answers[item].backgroundColor = .systemGreen
                 }
             }
         }
@@ -143,9 +143,18 @@ class LearnViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nextButtonOutlet.layer.cornerRadius = 10
+        nextButtonOutlet.layer.cornerRadius = 15
+        nextButtonOutlet.layer.shadowColor = UIColor.black.cgColor
+        nextButtonOutlet.layer.shadowOffset = CGSize(width: 5, height: 5)
+        nextButtonOutlet.layer.shadowRadius = 5
+        nextButtonOutlet.layer.shadowOpacity = 0.6
         for item in 0...3 {
-            answers[item].layer.cornerRadius = 10
+            answers[item].layer.cornerRadius = 15
+            answers[item].layer.shadowColor = UIColor.black.cgColor
+            answers[item].layer.shadowOffset = CGSize(width: 3, height: 3)
+            answers[item].layer.shadowRadius = 5
+            answers[item].layer.shadowOpacity = 0.6
+            
         }
     }
     
