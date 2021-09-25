@@ -9,6 +9,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Profile-->
+        <scene sceneID="fzo-a4-fia">
+            <objects>
+                <viewController id="Brk-4G-4bu" customClass="ProfileViewController" customModule="WORDS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vqq-Xb-cAC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rkh-1w-wAH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="CSd-Wd-16U"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dq6-21-eds" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1600" y="-858"/>
+        </scene>
         <!--Learn-->
         <scene sceneID="0XY-FZ-rrH">
             <objects>
@@ -132,12 +148,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Etd-S3-4Ff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1600.0000000000002" y="-483.48214285714283"/>
+            <point key="canvasLocation" x="-1600" y="-180"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main-->
         <scene sceneID="eni-ro-QSt">
             <objects>
-                <tabBarController id="Qft-0s-H99" sceneMemberID="viewController">
+                <tabBarController title="Main" id="Qft-0s-H99" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YFc-di-vC1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -146,6 +162,7 @@
                     <connections>
                         <segue destination="6vp-0y-0iT" kind="relationship" relationship="viewControllers" id="Wb4-19-Feu"/>
                         <segue destination="8M9-Cn-yTS" kind="relationship" relationship="viewControllers" id="N0P-Na-IQL"/>
+                        <segue destination="Brk-4G-4bu" kind="relationship" relationship="viewControllers" id="61d-5R-7aP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i71-bB-h6J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -231,7 +248,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWL-dc-AFc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-652.17391304347836" y="214.95535714285714"/>
+            <point key="canvasLocation" x="-696" y="554"/>
         </scene>
         <!--Words-->
         <scene sceneID="hqC-pu-ajy">
@@ -250,12 +267,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuM-P0-c3X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1562.3188405797102" y="214.95535714285714"/>
+            <point key="canvasLocation" x="-1600" y="555"/>
         </scene>
     </scenes>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

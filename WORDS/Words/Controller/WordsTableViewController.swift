@@ -28,25 +28,68 @@ class WordsTableViewController: UITableViewController {
         return searchController.isActive && !searchBarIsEmpty
     }
     
+    func selectAddMode() {
+        let alertController = UIAlertController(title: "Add new Word", message: "Please select the word add mode", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { _ in }
+        let userWordAction = UIAlertAction(title: "My word", style: .default) { (action) in
+            self.addUserWord()
+        }
+        let wordListAction = UIAlertAction(title: "100 words", style: .default) { (action) in
+            self.addListWords()
+        }
+        alertController.addAction(userWordAction)
+        alertController.addAction(wordListAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
+    func addListWords(){
+        let listWords = readFromFile()
+        var separatedListWords = [String]()
+        for item in listWords {
+            separatedListWords.append(contentsOf: item.components(separatedBy: "\n"))
+        }
+
+        let context = getContext()
+        guard let entity = NSEntityDescription.entity(forEntityName: "Word", in: context) else { return }
+        
+        
+        for item in stride(from: 0, through: 198, by: 2) {
+            let wordObject = Word(entity: entity, insertInto: context)
+            wordObject.title = separatedListWords[item]
+            wordObject.translate = separatedListWords[item+1]
+            wordObject.progress = 1
+            wordObject.pin = false
+            
+            do {
+                try context.save()
+                words.append(wordObject)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+        tableView.reloadData()
+    }
     
-    @IBAction func saveWord(_ sender: UIBarButtonItem) {
+    func addUserWord(){
         let alertController = UIAlertController(title: "New Word", message: "Please add a new word", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in
             let tf = alertController.textFields?.first
             if let newWord = tf?.text {
-                self.showActivityIndicator()
                 self.addWord(withWord: newWord)
                 self.tableView.reloadData()
-                self.hideActivityIndicator()
             }
         }
         alertController.addTextField { _ in }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { _ in }
         
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func saveWord(_ sender: UIBarButtonItem) {
+        selectAddMode()
     }
      
     // сохраняем данные в CoreData
@@ -200,18 +243,16 @@ class WordsTableViewController: UITableViewController {
         return configuration
     }
     
-    
-    func showActivityIndicator() {
-        activityView = UIActivityIndicatorView(style: .large)
-        activityView?.center = view.center
-        view.addSubview(activityView!)
-        activityView?.startAnimating()
-    }
-    
-    func hideActivityIndicator(){
-        if (activityView != nil){
-            activityView?.stopAnimating()
+    func readFromFile() -> [String] {
+        var textArray = [String]()
+        if let path = Bundle.main.path(forResource: "text100words", ofType: "txt") {
+            if let text = try? String(contentsOfFile: path) {
+                textArray = text.components(separatedBy: "\n\n")
+            }
+        } else {
+            print("Не удалось прочитать файл")
         }
+        return textArray
     }
     
 
