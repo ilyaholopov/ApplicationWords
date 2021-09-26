@@ -50,12 +50,12 @@ class LearnViewController: UIViewController {
         if index[indexAnswer] == true {
             answers[indexAnswer].backgroundColor = .systemGreen
             if words2[indexWords].progress != 10 {
-                words2[indexWords].progress += 1
+                words2[indexWords].progress += 2
             }
         } else {
             answers[indexAnswer].backgroundColor = UIColor.red
-            if words2[indexWords].progress > 1 {
-                words2[indexWords].progress -= 1
+            if words2[indexWords].progress > 2 {
+                words2[indexWords].progress -= 2
             }
             for item in 0...3 {
                 if index[item] == true {

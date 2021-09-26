@@ -58,7 +58,7 @@ class WordsTableViewController: UITableViewController {
             let wordObject = Word(entity: entity, insertInto: context)
             wordObject.title = separatedListWords[item]
             wordObject.translate = separatedListWords[item+1]
-            wordObject.progress = 1
+            wordObject.progress = 0
             wordObject.pin = false
             
             do {
@@ -88,6 +88,32 @@ class WordsTableViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func deleteAllElements(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Delete all words", message: "Are you sure you want to delete all words?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        let deleteAllWordsAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            self.deleteAllElementsCoreData()
+        }
+        alertController.addAction(deleteAllWordsAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+        tableView.reloadData()
+    }
+    
+    func deleteAllElementsCoreData() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let myPersistentStoreCoordinator = appDelegate.persistentContainer.persistentStoreCoordinator
+        
+        let context = getContext()
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Word")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+            do {
+                try myPersistentStoreCoordinator.execute(deleteRequest, with: context)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+    }
     @IBAction func saveWord(_ sender: UIBarButtonItem) {
         selectAddMode()
     }
@@ -103,7 +129,7 @@ class WordsTableViewController: UITableViewController {
         networkTranslateManager.fetchCurrentTranslation(forWord: word) { answer in
             wordObject.translate = answer.translation
         }
-        wordObject.progress = 1
+        wordObject.progress = 0
         wordObject.pin = false
         
         do {
@@ -179,7 +205,7 @@ class WordsTableViewController: UITableViewController {
         }
         cell.wordLabel.text = word.title
         cell.translateLabel.text = word.translate
-        cell.backgroundColor = ColorCell[Int(word.progress)-1]
+        cell.backgroundColor = ColorCell[Int(word.progress)]
         cell.imagePin.image = UIImage(systemName: "pin", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withRenderingMode(.alwaysOriginal)
         if word.pin == true {
             cell.imagePin.isHidden = false

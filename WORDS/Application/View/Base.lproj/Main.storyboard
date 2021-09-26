@@ -239,11 +239,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Words" id="vVg-BV-jtk">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="QcR-f0-Not">
-                            <connections>
-                                <action selector="saveWord:" destination="Ill-2X-qgx" id="dkD-s9-Ibd"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="done" systemItem="add" id="QcR-f0-Not">
+                                <connections>
+                                    <action selector="saveWord:" destination="Ill-2X-qgx" id="dkD-s9-Ibd"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="8C8-6e-TyV">
+                                <connections>
+                                    <action selector="deleteAllElements:" destination="Ill-2X-qgx" id="UP6-fk-KSb"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWL-dc-AFc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
