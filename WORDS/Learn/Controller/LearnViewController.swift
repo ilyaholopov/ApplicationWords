@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import AVKit
 
 class LearnViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class LearnViewController: UIViewController {
     var index = Array(repeating: false, count: 4)
     var indexWords: Int = 0
     var lastIndex: Int = -1
+    var mode: Int = 0
     
     
     @IBAction func answer1_button(_ sender: UIButton) {
@@ -44,6 +46,18 @@ class LearnViewController: UIViewController {
         wordForStudy()
         enableAllButton(selector: true)
         nextButtonOutlet.backgroundColor = .orange
+    }
+    @IBAction func volumeButton(_ sender: UIButton) {
+        let synthesizer = AVSpeechSynthesizer()
+        if mode == 0 {
+            let uttetance = AVSpeechUtterance(string: words2[indexWords].title!)
+            uttetance.voice = AVSpeechSynthesisVoice(language: "en-En")
+            synthesizer.speak(uttetance)
+        } else {
+            let uttetance = AVSpeechUtterance(string: words2[indexWords].translate!)
+            uttetance.voice = AVSpeechSynthesisVoice(language: "ru-Ru")
+            synthesizer.speak(uttetance)
+        }
     }
     
     private func selectAnswer(indexAnswer: Int) {
@@ -97,7 +111,7 @@ class LearnViewController: UIViewController {
         }
         index[Int.random(in: 0...3)] = true
         indexWords = nextIndexWordForLearn()
-        let mode = Int.random(in: 0...1)
+        self.mode = Int.random(in: 0...1)
         
         switch mode {
         case 0:

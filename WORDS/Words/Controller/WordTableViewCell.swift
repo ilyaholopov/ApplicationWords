@@ -13,6 +13,13 @@ class WordTableViewCell: UITableViewCell {
     @IBOutlet weak var translateLabel: UILabel!
     @IBOutlet weak var imagePin: UIImageView!
     
+    var buttonAction: ((Any) -> Void)?
+    
+    @IBAction func voiceButton(_ sender: UIButton) {
+        self.buttonAction?(sender)
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -20,5 +27,7 @@ class WordTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    
 
 }

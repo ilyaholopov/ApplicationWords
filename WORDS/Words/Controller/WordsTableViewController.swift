@@ -7,11 +7,35 @@
 
 import UIKit
 import CoreData
+import AVKit
 
-class WordsTableViewController: UITableViewController {
+class WordsTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    //индикатор, нужно его отсюда убрать
-    var activityView: UIActivityIndicatorView?
+    var choices = ["100 words", "100 verbs", "Манеры поведения"]
+    var pickerView = UIPickerView()
+    var typeValue = String()
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return choices.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return choices[row]
+    }
+        
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if row == 0 {
+            typeValue = "text100words"
+        } else if row == 1 {
+            typeValue = "100intermediateverbs"
+        } else if row == 2 {
+            typeValue = "demeanor"
+        }
+    }
     
     var words: [Word] = []
     var networkTranslateManager = NetworkTranslateManager() 
@@ -28,33 +52,50 @@ class WordsTableViewController: UITableViewController {
         return searchController.isActive && !searchBarIsEmpty
     }
     
-    func selectAddMode() {
+    private func selectAddMode() {
         let alertController = UIAlertController(title: "Add new Word", message: "Please select the word add mode", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { _ in }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
         let userWordAction = UIAlertAction(title: "My word", style: .default) { (action) in
             self.addUserWord()
         }
-        let wordListAction = UIAlertAction(title: "100 words", style: .default) { (action) in
-            self.addListWords()
+        let readyListAction = UIAlertAction(title: "Ready Lists", style: .default) { (action) in
+            self.readyList()
         }
         alertController.addAction(userWordAction)
-        alertController.addAction(wordListAction)
+        alertController.addAction(readyListAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
     
-    func addListWords(){
-        let listWords = readFromFile()
+    private  func readyList(){
+        let alertController = UIAlertController(title: "Please select list", message: "\n\n\n\n\n\n", preferredStyle: .alert)
+        let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 140))
+        
+        alertController.view.addSubview(pickerFrame)
+        pickerFrame.dataSource = self
+        pickerFrame.delegate = self
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            self.addListWords(listWords: self.readFromFile(nameFileForRead: self.typeValue))
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
+    private func addListWords(listWords list: [String]){
         var separatedListWords = [String]()
-        for item in listWords {
+        for item in list {
             separatedListWords.append(contentsOf: item.components(separatedBy: "\n"))
         }
 
         let context = getContext()
         guard let entity = NSEntityDescription.entity(forEntityName: "Word", in: context) else { return }
-        
-        
-        for item in stride(from: 0, through: 198, by: 2) {
+
+        for item in stride(from: 0, through: separatedListWords.count-2, by: 2) {
             let wordObject = Word(entity: entity, insertInto: context)
             wordObject.title = separatedListWords[item]
             wordObject.translate = separatedListWords[item+1]
@@ -71,7 +112,7 @@ class WordsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func addUserWord(){
+    private func addUserWord(){
         let alertController = UIAlertController(title: "New Word", message: "Please add a new word", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in
             let tf = alertController.textFields?.first
@@ -100,7 +141,7 @@ class WordsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func deleteAllElementsCoreData() {
+    private func deleteAllElementsCoreData() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let myPersistentStoreCoordinator = appDelegate.persistentContainer.persistentStoreCoordinator
         
@@ -212,6 +253,13 @@ class WordsTableViewController: UITableViewController {
         } else {
             cell.imagePin.isHidden = true
         }
+        
+        cell.buttonAction = { sender in
+            let synthesizer = AVSpeechSynthesizer()
+            let uttetance = AVSpeechUtterance(string: self.words[indexPath.row].title!)
+            uttetance.voice = AVSpeechSynthesisVoice(language: "en-En")
+            synthesizer.speak(uttetance)
+        }
         return cell
     }
 
@@ -269,11 +317,11 @@ class WordsTableViewController: UITableViewController {
         return configuration
     }
     
-    func readFromFile() -> [String] {
+    func readFromFile(nameFileForRead name: String) -> [String] {
         var textArray = [String]()
-        if let path = Bundle.main.path(forResource: "text100words", ofType: "txt") {
+        if let path = Bundle.main.path(forResource: name, ofType: "txt") {
             if let text = try? String(contentsOfFile: path) {
-                textArray = text.components(separatedBy: "\n\n")
+                textArray = text.components(separatedBy: "\n")
             }
         } else {
             print("Не удалось прочитать файл")

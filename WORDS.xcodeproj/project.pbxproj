@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B2238942702688A001A012A /* 100intermediateverbs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4B2238932702688A001A012A /* 100intermediateverbs.txt */; };
 		4B2AA7A226FF25800057CFC0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AA7A126FF257F0057CFC0 /* ProfileViewController.swift */; };
 		4B2AA7A426FF52A10057CFC0 /* text100words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4B2AA7A326FF52A00057CFC0 /* text100words.txt */; };
+		4B650BA62703599D000B72BB /* demeanor.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4B650BA52703599D000B72BB /* demeanor.txt */; };
 		4B710D3F266D2B3100384F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B710D3E266D2B3100384F8E /* AppDelegate.swift */; };
 		4B710D41266D2B3100384F8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B710D40266D2B3100384F8E /* SceneDelegate.swift */; };
 		4B710D46266D2B3100384F8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B710D44266D2B3100384F8E /* Main.storyboard */; };
@@ -25,8 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B2238932702688A001A012A /* 100intermediateverbs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 100intermediateverbs.txt; path = ../../../../../../Desktop/100intermediateverbs.txt; sourceTree = "<group>"; };
 		4B2AA7A126FF257F0057CFC0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = WORDS/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		4B2AA7A326FF52A00057CFC0 /* text100words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text100words.txt; path = ../../../../../../Desktop/text100words.txt; sourceTree = "<group>"; };
+		4B650BA52703599D000B72BB /* demeanor.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demeanor.txt; path = ../../../../../../Desktop/demeanor.txt; sourceTree = "<group>"; };
 		4B710D3B266D2B3100384F8E /* WORDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WORDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B710D3E266D2B3100384F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B710D40266D2B3100384F8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				4B2AA7A326FF52A00057CFC0 /* text100words.txt */,
+				4B650BA52703599D000B72BB /* demeanor.txt */,
+				4B2238932702688A001A012A /* 100intermediateverbs.txt */,
 				4B710D60266D597F00384F8E /* Constants.swift */,
 				4B710D4A266D2B3D00384F8E /* Assets.xcassets */,
 				4B710D4F266D2B3D00384F8E /* Info.plist */,
@@ -264,9 +270,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B710D4E266D2B3D00384F8E /* LaunchScreen.storyboard in Resources */,
+				4B650BA62703599D000B72BB /* demeanor.txt in Resources */,
 				4B710D4B266D2B3D00384F8E /* Assets.xcassets in Resources */,
 				4B710D46266D2B3100384F8E /* Main.storyboard in Resources */,
 				4B2AA7A426FF52A10057CFC0 /* text100words.txt in Resources */,
+				4B2238942702688A001A012A /* 100intermediateverbs.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
