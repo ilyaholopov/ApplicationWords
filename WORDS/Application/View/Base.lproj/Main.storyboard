@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--Профиль пользователя-->
         <scene sceneID="fzo-a4-fia">
             <objects>
                 <viewController id="Brk-4G-4bu" customClass="ProfileViewController" customModule="WORDS" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="X8u-xL-FkR">
-                                <rect key="frame" x="20" y="162" width="374" height="202"/>
+                                <rect key="frame" x="20" y="138" width="374" height="202"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Илья Холопов" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0X-Oq-ump">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="91"/>
@@ -49,26 +49,17 @@
                                     <constraint firstAttribute="height" constant="202" id="Ysx-E8-C3e"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Профиль пользователя" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rqv-rn-XE5">
-                                <rect key="frame" x="69" y="91" width="278.5" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rkh-1w-wAH"/>
                         <color key="backgroundColor" red="0.22811279879999999" green="0.64832947969999999" blue="0.79138233899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rkh-1w-wAH" firstAttribute="trailing" secondItem="X8u-xL-FkR" secondAttribute="trailing" constant="20" id="9Be-AR-n5a"/>
+                            <constraint firstItem="X8u-xL-FkR" firstAttribute="top" secondItem="rkh-1w-wAH" secondAttribute="top" constant="50" id="AVP-18-ReF"/>
                             <constraint firstItem="X8u-xL-FkR" firstAttribute="leading" secondItem="rkh-1w-wAH" secondAttribute="leading" constant="20" id="Ete-av-xVn"/>
-                            <constraint firstItem="Rqv-rn-XE5" firstAttribute="top" secondItem="rkh-1w-wAH" secondAttribute="top" constant="47" id="J5J-2h-LTE"/>
                             <constraint firstItem="k0X-Oq-ump" firstAttribute="centerX" secondItem="rkh-1w-wAH" secondAttribute="centerX" id="YD4-RF-geE"/>
-                            <constraint firstItem="rkh-1w-wAH" firstAttribute="trailing" secondItem="Rqv-rn-XE5" secondAttribute="trailing" constant="66.5" id="lnK-Go-QRF"/>
-                            <constraint firstItem="X8u-xL-FkR" firstAttribute="top" secondItem="Rqv-rn-XE5" secondAttribute="bottom" constant="41" id="yF5-Cx-QGB"/>
-                            <constraint firstItem="Rqv-rn-XE5" firstAttribute="leading" secondItem="rkh-1w-wAH" secondAttribute="leading" constant="69" id="zkK-7o-LDF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="CSd-Wd-16U"/>
+                    <navigationItem key="navigationItem" title="Профиль пользователя" id="QzQ-TG-twX"/>
                     <connections>
                         <outlet property="wordsForStudyLabel" destination="j0l-fe-VIO" id="MK3-7y-qUQ"/>
                         <outlet property="wordsLearnedLabel" destination="tex-bp-thg" id="ezJ-KP-Lgi"/>
@@ -76,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dq6-21-eds" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1600.0000000000002" y="-858.48214285714278"/>
+            <point key="canvasLocation" x="-689.85507246376812" y="-858.48214285714278"/>
         </scene>
         <!--Learn-->
         <scene sceneID="0XY-FZ-rrH">
@@ -211,7 +202,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Etd-S3-4Ff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1600.0000000000002" y="-180.13392857142856"/>
+            <point key="canvasLocation" x="-1600" y="-167"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fJW-Ze-1Jl">
+            <objects>
+                <viewController id="m9J-xL-ZQs" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gdS-Pw-0FT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="cBI-Ht-SIl"/>
+                        <color key="backgroundColor" red="0.22811279879999999" green="0.64832947969999999" blue="0.79138233899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PT3-3R-3bd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-690" y="-167"/>
         </scene>
         <!--Main-->
         <scene sceneID="eni-ro-QSt">
@@ -225,7 +231,7 @@
                     <connections>
                         <segue destination="6vp-0y-0iT" kind="relationship" relationship="viewControllers" id="Wb4-19-Feu"/>
                         <segue destination="8M9-Cn-yTS" kind="relationship" relationship="viewControllers" id="N0P-Na-IQL"/>
-                        <segue destination="Brk-4G-4bu" kind="relationship" relationship="viewControllers" id="61d-5R-7aP"/>
+                        <segue destination="Pxr-Oz-w0t" kind="relationship" relationship="viewControllers" id="61d-5R-7aP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i71-bB-h6J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -349,6 +355,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuM-P0-c3X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1600" y="555"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="7pk-8g-uRD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pxr-Oz-w0t" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="CSd-Wd-16U"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x3O-iF-XYb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4mg-kH-P9V">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="Brk-4G-4bu" kind="relationship" relationship="rootViewController" id="Yly-Zu-Qrh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yn9-Q7-277" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1600.0000000000002" y="-858.48214285714278"/>
         </scene>
     </scenes>
     <resources>

@@ -8,6 +8,8 @@
 import UIKit
 import CoreData
 import AVKit
+import AVFoundation
+import AudioToolbox
 
 class LearnViewController: UIViewController {
     
@@ -19,15 +21,19 @@ class LearnViewController: UIViewController {
     
     
     @IBAction func answer1_button(_ sender: UIButton) {
+        AudioServicesPlaySystemSound(SystemSoundID(1104))
         selectAnswer(indexAnswer: 0)
     }
     @IBAction func answer2_button(_ sender: UIButton) {
+        AudioServicesPlaySystemSound(SystemSoundID(1104))
         selectAnswer(indexAnswer: 1)
     }
     @IBAction func answer3_button(_ sender: UIButton) {
+        AudioServicesPlaySystemSound(SystemSoundID(1104))
         selectAnswer(indexAnswer: 2)
     }
     @IBAction func answer4_button(_ sender: UIButton) {
+        AudioServicesPlaySystemSound(SystemSoundID(1104))
         selectAnswer(indexAnswer: 3)
     }
     
@@ -37,6 +43,7 @@ class LearnViewController: UIViewController {
     
     
     @IBAction func nextButton(_ sender: UIButton) {
+        AudioServicesPlaySystemSound(SystemSoundID(1105))
         let context = getContext()
         do {
             try context.save()
@@ -157,13 +164,13 @@ class LearnViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nextButtonOutlet.layer.cornerRadius = 15
+        nextButtonOutlet.layer.cornerRadius = 20
         nextButtonOutlet.layer.shadowColor = UIColor.black.cgColor
         nextButtonOutlet.layer.shadowOffset = CGSize(width: 5, height: 5)
         nextButtonOutlet.layer.shadowRadius = 5
         nextButtonOutlet.layer.shadowOpacity = 0.6
         for item in 0...3 {
-            answers[item].layer.cornerRadius = 15
+            answers[item].layer.cornerRadius = 20
             answers[item].layer.shadowColor = UIColor.black.cgColor
             answers[item].layer.shadowOffset = CGSize(width: 3, height: 3)
             answers[item].layer.shadowRadius = 5
