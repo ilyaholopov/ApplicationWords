@@ -335,9 +335,7 @@ class WordsTableViewController: UITableViewController, UIPickerViewDelegate, UIP
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let secondViewController = storyboard.instantiateViewController(identifier: "CustomizationWordViewController") as? CustomizationWordViewController else { return }
-        secondViewController.titleWord = words[indexPathRow].title!
-        secondViewController.translate = words[indexPathRow].translate!
-        secondViewController.progress = words[indexPathRow].progress
+        secondViewController.indexPathRow = indexPathRow
         show(secondViewController, sender: nil)
     }
 }
