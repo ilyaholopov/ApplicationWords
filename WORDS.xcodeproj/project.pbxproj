@@ -23,6 +23,7 @@
 		4B710D61266D597F00384F8E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B710D60266D597F00384F8E /* Constants.swift */; };
 		4B710D64266D5CB100384F8E /* CurrentTranslationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B710D63266D5CB100384F8E /* CurrentTranslationData.swift */; };
 		4B710D67266D661500384F8E /* CurrentWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B710D66266D661500384F8E /* CurrentWord.swift */; };
+		4B772191272C96FD000AF8A4 /* CustomizationWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B772190272C96FC000AF8A4 /* CustomizationWordViewController.swift */; };
 		4BFF0BF22670E0DD00F5FC12 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFF0BF12670E0DC00F5FC12 /* LearnViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		4B710D60266D597F00384F8E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4B710D63266D5CB100384F8E /* CurrentTranslationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTranslationData.swift; sourceTree = "<group>"; };
 		4B710D66266D661500384F8E /* CurrentWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWord.swift; sourceTree = "<group>"; };
+		4B772190272C96FC000AF8A4 /* CustomizationWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomizationWordViewController.swift; path = WORDS/CustomizationWordViewController.swift; sourceTree = SOURCE_ROOT; };
 		4BFF0BF12670E0DC00F5FC12 /* LearnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				4B710D44266D2B3100384F8E /* Main.storyboard */,
+				4B772190272C96FC000AF8A4 /* CustomizationWordViewController.swift */,
 				4B2AA7A126FF257F0057CFC0 /* ProfileViewController.swift */,
 				4B710D4C266D2B3D00384F8E /* LaunchScreen.storyboard */,
 			);
@@ -285,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B772191272C96FD000AF8A4 /* CustomizationWordViewController.swift in Sources */,
 				4B710D49266D2B3100384F8E /* WORDS.xcdatamodeld in Sources */,
 				4B710D5E266D56E900384F8E /* NetworkTranslateManager.swift in Sources */,
 				4B710D3F266D2B3100384F8E /* AppDelegate.swift in Sources */,

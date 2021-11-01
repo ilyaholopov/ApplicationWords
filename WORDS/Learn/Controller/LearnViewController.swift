@@ -10,6 +10,7 @@ import CoreData
 import AVKit
 import AVFoundation
 import AudioToolbox
+import Foundation
 
 class LearnViewController: UIViewController {
     
@@ -19,6 +20,10 @@ class LearnViewController: UIViewController {
     var lastIndex: Int = -1
     var mode: Int = 0
     
+    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var outlletTextField: UITextField!
+    @IBAction func answerTextField(_ sender: UITextField) {
+    }
     
     @IBAction func answer1_button(_ sender: UIButton) {
         AudioServicesPlaySystemSound(SystemSoundID(1104))
@@ -50,10 +55,26 @@ class LearnViewController: UIViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+        resultLabel.text = ""
         wordForStudy()
         enableAllButton(selector: true)
-        nextButtonOutlet.backgroundColor = .orange
+        nextButtonOutlet.backgroundColor = .systemGray2
+        outlletTextField.text = ""
     }
+    
+    private func spellCheck() {
+        let text1 = outlletTextField.text?.lowercased()
+        let text2 = words2[indexWords].title?.lowercased()
+        if text1 == text2 {
+            resultLabel.text = "Успешно"
+        } else {
+            if let text = words2[indexWords].title {
+                resultLabel.text = "Ошибка! Правильный ответ: \(text)"
+                
+            }
+        }
+    }
+    
     @IBAction func volumeButton(_ sender: UIButton) {
         let synthesizer = AVSpeechSynthesizer()
         if mode == 0 {
@@ -112,49 +133,69 @@ class LearnViewController: UIViewController {
         return indices[Int.random(in: 0..<indices.count)]
     }
     
+    private func spellingExercise() {
+        for item in 0...3 {
+            answers[item].isHidden = true
+        }
+        resultLabel.text = ""
+        outlletTextField.isHidden = false
+    }
+    
     private func wordForStudy() {
         for item in 0...3 {
             index[item] = false
         }
         index[Int.random(in: 0...3)] = true
         indexWords = nextIndexWordForLearn()
-        self.mode = Int.random(in: 0...1)
+        self.mode = Int.random(in: 0...2)
         
         switch mode {
         case 0:
             wordLabel.text = words2[indexWords].title
         case 1:
             wordLabel.text = words2[indexWords].translate
+        case 2:
+            wordLabel.text = words2[indexWords].translate
         default:
             print("Error")
         }
         
-        for item in 0...3 {
-            switch mode {
-            case 0:
-                if index[item] == true {
-                    answers[item].setTitle(words2[indexWords].translate, for: .normal)
-                } else {
-                    let wordRandom = words2[Int.random(in: 0..<words2.count)]
-                    if wordRandom == words2[indexWords] {
-                        index[item] = true
-                    }
-                    answers[item].setTitle(wordRandom.translate, for: .normal)
-                }
-            case 1:
-                if index[item] == true {
-                    answers[item].setTitle(words2[indexWords].title, for: .normal)
-                } else {
-                    let wordRandom = words2[Int.random(in: 0..<words2.count)]
-                    if wordRandom == words2[indexWords] {
-                        index[item] = true
-                    }
-                    answers[item].setTitle(wordRandom.title, for: .normal)
-                }
-            default:
-                print("Error")
+        if mode == 2 {
+            spellingExercise()
+        } else {
+            outlletTextField.isHidden = true
+            for item in 0...3 {
+                answers[item].isHidden = false
             }
-            answers[item].backgroundColor = UIColor.orange
+            
+            for item in 0...3 {
+                switch mode {
+                case 0:
+                    if index[item] == true {
+                        answers[item].setTitle(words2[indexWords].translate, for: .normal)
+                    } else {
+                        let wordRandom = words2[Int.random(in: 0..<words2.count)]
+                        if wordRandom == words2[indexWords] {
+                            index[item] = true
+                        }
+                        answers[item].setTitle(wordRandom.translate, for: .normal)
+                    }
+                case 1:
+                    if index[item] == true {
+                        answers[item].setTitle(words2[indexWords].title, for: .normal)
+                    } else {
+                        let wordRandom = words2[Int.random(in: 0..<words2.count)]
+                        if wordRandom == words2[indexWords] {
+                            index[item] = true
+                        }
+                        answers[item].setTitle(wordRandom.title, for: .normal)
+                    }
+                default:
+                    print("Error")
+                }
+                answers[item].backgroundColor = UIColor.orange
+            }
+            
         }
         
         lastIndex = indexWords
@@ -163,6 +204,13 @@ class LearnViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        outlletTextField.returnKeyType = .done
+        //outlletTextField.autocapitalizationType = .words
+        outlletTextField.autocorrectionType = .no
+        outlletTextField.placeholder = "Введите слово"
+        outlletTextField.delegate = self
+        resultLabel.text = ""
         
         nextButtonOutlet.layer.cornerRadius = 20
         nextButtonOutlet.layer.shadowColor = UIColor.black.cgColor
@@ -198,4 +246,13 @@ class LearnViewController: UIViewController {
         
     }
 
+}
+
+extension LearnViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        spellCheck()
+        nextButtonOutlet.backgroundColor = .green
+        return true
+    }
 }

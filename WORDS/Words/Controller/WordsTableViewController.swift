@@ -14,6 +14,7 @@ class WordsTableViewController: UITableViewController, UIPickerViewDelegate, UIP
     var choices = ["100 words", "100 verbs", "Манеры поведения"]
     var pickerView = UIPickerView()
     var typeValue = String()
+    var indexPathRow: Int = 0
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
@@ -329,7 +330,16 @@ class WordsTableViewController: UITableViewController, UIPickerViewDelegate, UIP
         return textArray
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        indexPathRow = indexPath.row
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let secondViewController = storyboard.instantiateViewController(identifier: "CustomizationWordViewController") as? CustomizationWordViewController else { return }
+        secondViewController.titleWord = words[indexPathRow].title!
+        secondViewController.translate = words[indexPathRow].translate!
+        secondViewController.progress = words[indexPathRow].progress
+        show(secondViewController, sender: nil)
+    }
 }
 
 
