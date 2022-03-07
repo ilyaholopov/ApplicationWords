@@ -20,6 +20,7 @@ class LearnViewController: UIViewController {
     var lastIndex: Int = -1
     var mode: Int = 0
     
+    @IBOutlet weak var voiceOutlet: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var outlletTextField: UITextField!
     @IBAction func answerTextField(_ sender: UITextField) {
@@ -66,11 +67,16 @@ class LearnViewController: UIViewController {
         let text1 = outlletTextField.text?.lowercased()
         let text2 = words2[indexWords].title?.lowercased()
         if text1 == text2 {
-            resultLabel.text = "Успешно"
+            resultLabel.text = "Правильно!"
+            if words2[indexWords].progress != 10 {
+                words2[indexWords].progress += 2
+            }
         } else {
             if let text = words2[indexWords].title {
-                resultLabel.text = "Ошибка! Правильный ответ: \(text)"
-                
+                resultLabel.text = "Не правильно! Ответ: \(text)"
+                if words2[indexWords].progress > 2 {
+                    words2[indexWords].progress -= 2
+                }
             }
         }
     }
@@ -91,10 +97,12 @@ class LearnViewController: UIViewController {
     private func selectAnswer(indexAnswer: Int) {
         if index[indexAnswer] == true {
             answers[indexAnswer].backgroundColor = .systemGreen
+            resultLabel.text = "Правильно!"
             if words2[indexWords].progress != 10 {
                 words2[indexWords].progress += 2
             }
         } else {
+            resultLabel.text = "Не правильно!"
             answers[indexAnswer].backgroundColor = UIColor.red
             if words2[indexWords].progress > 2 {
                 words2[indexWords].progress -= 2
@@ -147,14 +155,12 @@ class LearnViewController: UIViewController {
         }
         index[Int.random(in: 0...3)] = true
         indexWords = nextIndexWordForLearn()
-        self.mode = Int.random(in: 0...2)
+        selectMode()
         
         switch mode {
         case 0:
             wordLabel.text = words2[indexWords].title
-        case 1:
-            wordLabel.text = words2[indexWords].translate
-        case 2:
+        case 1..<3:
             wordLabel.text = words2[indexWords].translate
         default:
             print("Error")
@@ -200,30 +206,45 @@ class LearnViewController: UIViewController {
         
         lastIndex = indexWords
     }
+    
+    private func selectMode(){
+        switch words2[indexWords].progress {
+        case 0..<7:
+            mode = Int.random(in: 0...1)
+        case 7..<11:
+            mode = 2
+        default:
+            print("Error")
+        }
+    }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    private func setupTextField(){
         outlletTextField.returnKeyType = .done
-        //outlletTextField.autocapitalizationType = .words
         outlletTextField.autocorrectionType = .no
         outlletTextField.placeholder = "Введите слово"
         outlletTextField.delegate = self
-        resultLabel.text = ""
-        
+    }
+    
+    private func setupNextButton(){
         nextButtonOutlet.layer.cornerRadius = 20
         nextButtonOutlet.layer.shadowColor = UIColor.black.cgColor
         nextButtonOutlet.layer.shadowOffset = CGSize(width: 5, height: 5)
         nextButtonOutlet.layer.shadowRadius = 5
         nextButtonOutlet.layer.shadowOpacity = 0.6
+    }
+    
+    private func setupAnswersButton(){
         for item in 0...3 {
             answers[item].layer.cornerRadius = 20
             answers[item].layer.shadowColor = UIColor.black.cgColor
             answers[item].layer.shadowOffset = CGSize(width: 3, height: 3)
             answers[item].layer.shadowRadius = 5
             answers[item].layer.shadowOpacity = 0.6
-            
         }
     }
     
@@ -242,10 +263,34 @@ class LearnViewController: UIViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        wordForStudy()
-        
-    }
 
+        var haveToStudy: Bool = false
+        for item in 0..<words2.count {
+            if words2[item].progress < 10 {
+                haveToStudy = true
+            }
+        }
+        print(haveToStudy)
+        if haveToStudy {
+            setupTextField()
+            resultLabel.text = ""
+            setupNextButton()
+            setupAnswersButton()
+            wordLabel.isHidden = false
+            nextButtonOutlet.isHidden = false
+            voiceOutlet.isHidden = false
+            wordForStudy()
+        } else {
+            resultLabel.text = "Нет слов для изучения"
+            for item in 0...3 {
+                answers[item].isHidden = true
+            }
+            wordLabel.isHidden = true
+            outlletTextField.isHidden = true
+            nextButtonOutlet.isHidden = true
+            voiceOutlet.isHidden = true
+        }
+    }
 }
 
 extension LearnViewController: UITextFieldDelegate {

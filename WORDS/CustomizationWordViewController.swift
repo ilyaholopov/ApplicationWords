@@ -28,6 +28,7 @@ class CustomizationWordViewController: UIViewController {
         titleTextField.clearsOnBeginEditing = false
         titleTextField.clearButtonMode = .whileEditing
         titleTextField.delegate = self
+        titleTextField.layer.cornerRadius = 20
         
         
         translateTextField.returnKeyType = .done
@@ -35,6 +36,7 @@ class CustomizationWordViewController: UIViewController {
         translateTextField.clearsOnBeginEditing = false
         translateTextField.clearButtonMode = .whileEditing
         translateTextField.delegate = self
+        translateTextField.layer.cornerRadius = 20
     }
     
     private func SaveContext() {

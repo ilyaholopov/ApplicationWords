@@ -1,0 +1,240 @@
+To be
+Быть
+To do
+Делать
+To feel
+Чувствовать
+To see
+Видеть
+To hear
+Слышать
+To run
+Бежать
+To get
+Получать
+To make
+Сделать
+To cook
+Готовить
+To sing
+Петь
+To speak
+Разговаривать
+To say
+Говорить
+To tell
+Рассказывать
+To take
+Брать
+To sit
+Садиться
+To stand
+Стоять
+To laugh
+Смеяться
+To smile
+Улыбаться
+To open
+Открывать
+To close
+Закрывать
+To love
+Любить
+To like
+Нравиться
+To give
+Давать
+To bring
+Приносить
+To breath
+Дышать
+To buy
+Покупать
+To sell
+Продавать
+To forget
+Забывать
+To believe
+Верить
+To have
+Иметь
+To go
+Идти
+To know
+Знать
+To think
+Думать
+To come
+Приходить
+To want
+Хотеть
+To use
+Использовать
+To find
+Находить
+To work
+Работать
+To eat
+Есть
+To drink
+Пить
+To write
+Писать
+To read
+Читать
+To call
+Звонить
+To try
+Пытаться
+To need
+Нуждаться
+To become
+Становиться
+To put
+Класть
+To leave
+Оставлять
+To pay
+Платить
+To play
+Играть
+To pray
+Молиться
+To stay
+Оставаться
+To mean
+Означать
+To keep
+Держать
+To let
+Оставлять
+To begin
+Начинать
+To start
+Стартовать
+To finish
+Заканчивать
+To help
+Помогать
+To show
+Показывать
+To cry
+Плакать
+To move
+Двигаться
+To jump
+Прыгать
+To live
+Жить
+To die
+Умирать
+To happen
+Случаться
+To lose
+Проигрывать
+To hate
+Ненавидеть
+To include
+Включать
+To turn on
+Включать
+To turn off
+Выключать
+To continue
+Продолжать
+To change
+Менять
+To wash
+Мыть
+To clean
+Убирать
+To lead
+Вести
+To understand
+Понимать
+To watch
+Смотреть
+To discover
+Исследовать
+To imagine
+Представлять
+To introduce
+Представить
+To follow
+Следовать
+To create
+Создавать
+To grow
+Расти
+To spend
+Тратить
+To win
+Выигрывать
+To offer
+Предлагать
+To learn
+Изучать
+To appear
+Появляться
+To disappear
+Исчезать
+To build
+Строить
+To break
+Ломать
+To send
+Посылать
+To fall
+Падать
+To cut
+Резать
+To achieve
+Достигать
+To communicate
+Общаться
+To kill
+Убивать
+To pass
+Проходить
+To fly
+Летать
+To swim
+Плавать
+To decide
+Решать
+To return
+Возвращаться
+To hope
+Надеяться
+To explain
+Объяснять
+To propose
+Предлагать
+To develop
+Развивать
+To support
+Поддерживать
+To dance
+Танцевать
+To draw
+Рисовать
+To book
+Бронировать
+To be afraid
+Бояться
+To agree
+Соглашаться
+To check up
+Проверять
+To delete
+Удалять
+To choose
+Выбирать
+To catch
+Ловить
+To ask
+Спрашивать
+To answer
+Отвечать
+To hesitate
+Cомневаться

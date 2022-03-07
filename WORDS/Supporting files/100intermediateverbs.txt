@@ -1,0 +1,196 @@
+cancel
+отменять
+approve
+утвердить
+boast
+гордиться
+contribute
+жертвовать
+deliver
+доставлять
+descend
+спуститься
+concentrate
+сосредотачиваться
+distract
+отвлечь
+torture
+мучить
+confuse
+путать
+abandon
+покинуть
+escape
+сбежать
+distribute
+распростронять
+elaborate
+разрабатывать
+construct
+строить
+humiliate
+унижать
+To maintain
+поддерживать
+To squeeze
+сжимать
+To delegate
+делегировать
+To transfer
+передавать
+To employ
+нанимать
+To catch
+поймать
+To commit
+зафиксировать
+To arrange
+организовать
+To implement
+внедрить
+To insulate
+ограждать
+To encourage
+стимулировать
+To foster
+поощрять
+To boost
+повышать
+optimize
+оптимизировать
+To rank
+ранжировать
+To identify
+идентифицировать
+To ensure
+обеспечить
+To accomplish
+выполнить
+To customize
+настроить
+To localize
+локализировать
+To tailor
+приспособить
+To validate
+удостоверить
+To reserve
+резервировать
+To estimate
+оценивать
+To consulate
+консультировать
+To regard
+рассматривать
+To indicate
+указывать
+To unify
+объединять
+To digitalize
+оцифровать
+To expose
+подвергать
+To idealize
+идеализировать
+To navigate
+ориентироваться
+To sustain
+выдерживать
+To constrain
+сдерживать
+To evade
+обойти
+To purchase
+приобретать
+To earn
+обойти
+To make sure
+убедиться
+To prototype
+план
+To endeavour
+стремиться
+To blend
+смешивать
+To mitigate
+смягчать
+To emphasize
+подчеркнуть
+To observe
+наблюдать
+To evolve
+развиваться
+To incentivize
+стимулировать
+To respond
+реагировать
+To connect
+соединить
+To command
+командовать
+To check-out
+проверить
+To extend
+продлить
+To retain
+удержать
+To exhibit
+показывать
+To invent
+изобретать
+To abridge
+ограничивать
+To self-express
+самовыражаться
+To neglect
+пренебрегать
+To negotiate
+договариваться
+To upgrade
+повышать
+To renew
+обновить
+To specialize
+специализироваться
+To balance
+уравновешивать
+To absorb
+поглощать
+To overwhelm
+переполнять
+To align
+выравнивать
+To withdraw
+отстраниться
+To whistle
+свистеть
+To suspect
+подозревать
+To surrender
+сдаваться
+To depend on
+зависеть от
+To correct
+исправлять
+To define
+проектировать
+To visualize
+визуализировать 
+design
+проектировать
+minimize
+минимизировать
+disturb
+нарушать
+integrate
+интегрировать
+exchange
+обменивать
+organize
+организовать
+collaborate
+сотрудничать
+embed
+встраивать
+generate
+генерировать

@@ -82,7 +82,11 @@ class WordsTableViewController: UITableViewController, UIPickerViewDelegate, UIP
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
+        //present(alertController, animated: true, completion: nil)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let secondViewController = storyboard.instantiateViewController(identifier: "ReadyListsTVC") as? ReadyListsTVC else { return }
+        show(secondViewController, sender: nil)
     }
     
     
@@ -127,7 +131,11 @@ class WordsTableViewController: UITableViewController, UIPickerViewDelegate, UIP
         
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
+        //present(alertController, animated: true, completion: nil)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let secondViewController = storyboard.instantiateViewController(identifier: "AddNewWordsViewController") as? AddNewWordsViewController else { return }
+        show(secondViewController, sender: nil)
     }
     
     @IBAction func deleteAllElements(_ sender: UIBarButtonItem) {
@@ -168,7 +176,7 @@ class WordsTableViewController: UITableViewController, UIPickerViewDelegate, UIP
         let wordObject = Word(entity: entity, insertInto: context)
         
         wordObject.title = word
-        networkTranslateManager.fetchCurrentTranslation(forWord: word) { answer in
+        networkTranslateManager.fetchCurrentTranslation(for: "en-ru", forWord: word) { answer in
             wordObject.translate = answer.translation
         }
         wordObject.progress = 0
@@ -221,6 +229,12 @@ class WordsTableViewController: UITableViewController, UIPickerViewDelegate, UIP
         searchController.searchBar.placeholder = "Word"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        deleteList()
+        createList()
+        printLists()
+        filterWords()
+        printLists()
     }
 
     // MARK: - Table view data source
@@ -337,6 +351,92 @@ class WordsTableViewController: UITableViewController, UIPickerViewDelegate, UIP
         guard let secondViewController = storyboard.instantiateViewController(identifier: "CustomizationWordViewController") as? CustomizationWordViewController else { return }
         secondViewController.indexPathRow = indexPathRow
         show(secondViewController, sender: nil)
+    }
+    
+    // MARK: - CoreData
+    
+    private func createList(){
+        let context = getContext()
+        
+        let word1 = Word(context: context)
+        word1.progress = 0
+        word1.title = "go"
+        word1.translate = "идти"
+        word1.pin = false
+        
+        let word2 = Word(context: context)
+        word2.progress = 0
+        word2.title = "home"
+        word2.translate = "дом"
+        word2.pin = true
+        
+        let userList = ListWords(context: context)
+        userList.status = true
+        userList.filename = ""
+        userList.nameList = "Список пользователя"
+        
+        userList.words = NSSet.init(array: [word1, word2])
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func printLists(){
+        let context = getContext()
+        
+        let fetchRequest = NSFetchRequest<Word>(entityName: "Word")
+        
+        do {
+            let words2 = try context.fetch(fetchRequest)
+            
+            for word in words2 {
+                print(word.title ?? "Пусто")
+                print(word.ofList?.nameList ?? "Нет названия")
+            }
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func deleteList(){
+        let context = getContext()
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ListWords")
+        
+        do {
+            let lists = try context.fetch(fetchRequest)
+            for list in lists {
+                context.delete(list)
+            }
+            
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func filterWords(){
+        let context = getContext()
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Word")
+        
+        fetchRequest.predicate = NSPredicate(format: "title == %@", "hom")
+        
+        do {
+            let words2 = try context.fetch(fetchRequest)
+            
+            print("Фильтр: \(words2.count)")
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
 }
 
